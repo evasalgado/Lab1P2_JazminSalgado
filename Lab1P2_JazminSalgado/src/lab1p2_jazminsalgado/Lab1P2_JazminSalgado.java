@@ -25,7 +25,7 @@ public class Lab1P2_JazminSalgado {
     static ArrayList<Fecha> fechas = new ArrayList<>();
     static ArrayList<usuario> usuarios = new ArrayList<>();
     static ArrayList<dominio> dominios = new ArrayList<>();
-
+    
     public static void main(String[] args) throws ParseException {
         Scanner leer = new Scanner(System.in);
         String op = "";
@@ -60,7 +60,7 @@ public class Lab1P2_JazminSalgado {
                         default:
                             System.out.println("Numero ingresado no es valido");
                             break;
-
+                        
                     }
                     break;
                 case "c":
@@ -72,9 +72,9 @@ public class Lab1P2_JazminSalgado {
                     break;
             }
         } while (op != "c");
-
+        
     }
-
+    
     public static void añadirfecha(int num) throws ParseException {
         ArrayList dates = new ArrayList();
         Random alea = new Random();
@@ -95,41 +95,65 @@ public class Lab1P2_JazminSalgado {
             
             int date = Integer.parseInt(totdate);
             for (int j = 0; j < fechas.size(); j++) {
-               
+                
             }
         }
         
-        System.out.println("Fechas originales\n"+fechas+"\n");
-
+        System.out.println("Fechas originales\n" + fechas + "\n");
+        
     }
-
+    
     public static void registrarusuario(String user) {
         usuario newuser = new usuario(user);
-
-        if (usuarios.contains(newuser)==true) {
+        
+        if (usuarios.contains(newuser)) {
             System.out.println("Usuario ingresado ya se encuenta en la lista");
         } else {
             usuarios.add(newuser);
         }
         System.out.println("Usuario registrado exitosamente");
     }
-
+    
     public static void listarcorreo() {
-
+        ArrayList gmail = new ArrayList();
+        ArrayList hotmail = new ArrayList();
+        ArrayList outlook = new ArrayList();
+        ArrayList yahoo = new ArrayList();
+        ArrayList icloud = new ArrayList();
+        ArrayList nonfound = new ArrayList();
         if (usuarios.isEmpty()) {
             System.out.println("Ingrese algo a la lista primero");
         } else {
             for (int i = 0; i < usuarios.size(); i++) {
-                String users = usuarios.get(i).getUser();
+                String users = usuarios.get(i).user;
                 String token[] = users.split("@");
                 
-                
-                if (users.contains(token[1])) {
-                     dominios.add(new dominio(token[1],usuarios));;
+                if (token[1].equals("gmail")) {
+                    gmail.add(usuarios.get(i));
+                } else if (token[1].equals("hotmail")) {
+                    hotmail.add(usuarios.get(i));
+                } else if (token[1].equals("outlook")) {
+                    outlook.add(usuarios.get(i));
+                } else if (token[1].equals("yahoo")) {
+                    yahoo.add(usuarios.get(i));
+                } else if (token[1].equals("yahoo")) {
+                    icloud.add(usuarios.get(i));
+                } else {
+                    nonfound.add(usuarios.get(i));
                 }
                 
-                System.out.println(dominios.get(i).dominio);
-                System.out.println(dominios.get(i).correo);
+                System.out.println("Gmail:\n"
+                        + gmail.get(i)
+                        + "Hotmail:\n"
+                        + hotmail.get(i)
+                        + "Outlook\n"
+                        + outlook.get(i)
+                        + "Yahoo:\n"
+                        + yahoo.get(i)
+                        + "icloud:\n"
+                        + icloud.get(i)
+                        + "Correos no encontrados:\n"
+                        + nonfound.get(i));
             }
         }
     }
