@@ -95,7 +95,9 @@ public class Lab1P2_JazminSalgado {
             
             int date = Integer.parseInt(totdate);
             for (int j = 0; j < fechas.size(); j++) {
-                
+                if (fechas.get(0).indice>fechas.get(i).indice) {
+                    
+                }
             }
         }
         
@@ -128,31 +130,44 @@ public class Lab1P2_JazminSalgado {
                 String users = usuarios.get(i).user;
                 String token[] = users.split("@");
                 
-                if (token[1].equals("gmail")) {
+                if (token[1].equals("gmail.com")) {
                     gmail.add(usuarios.get(i));
-                } else if (token[1].equals("hotmail")) {
+                } else if (token[1].equals("hotmail.com")) {
                     hotmail.add(usuarios.get(i));
-                } else if (token[1].equals("outlook")) {
+                } else if (token[1].equals("outlook.com")) {
                     outlook.add(usuarios.get(i));
-                } else if (token[1].equals("yahoo")) {
+                } else if (token[1].equals("yahoo.com")) {
                     yahoo.add(usuarios.get(i));
-                } else if (token[1].equals("yahoo")) {
+                } else if (token[1].equals("icloud.com")) {
                     icloud.add(usuarios.get(i));
                 } else {
                     nonfound.add(usuarios.get(i));
                 }
                 
+                
+            } 
+            for (int i = 0; i < gmail.size(); i++) {
                 System.out.println("Gmail:\n"
-                        + gmail.get(i)
-                        + "Hotmail:\n"
-                        + hotmail.get(i)
-                        + "Outlook\n"
-                        + outlook.get(i)
-                        + "Yahoo:\n"
-                        + yahoo.get(i)
-                        + "icloud:\n"
-                        + icloud.get(i)
-                        + "Correos no encontrados:\n"
+                        + gmail.get(i));
+            }
+            for (int i = 0; i < hotmail.size(); i++) {
+                System.out.println("Hotmail:\n"
+                        + hotmail.get(i));
+            }
+            for (int i = 0; i < outlook.size(); i++) {
+                System.out.println("Outlook:\n"
+                        + outlook.get(i));
+            }
+            for (int i = 0; i < yahoo.size(); i++) {
+                System.out.println("Yahoo:\n"
+                        + yahoo.get(i));
+            }
+            for (int i = 0; i < icloud.size(); i++) {
+                System.out.println("Icloud:\n"
+                        + icloud.get(i));
+            }
+            for (int i = 0; i < nonfound.size(); i++) {
+                System.out.println("No encontrados:\n"
                         + nonfound.get(i));
             }
         }
