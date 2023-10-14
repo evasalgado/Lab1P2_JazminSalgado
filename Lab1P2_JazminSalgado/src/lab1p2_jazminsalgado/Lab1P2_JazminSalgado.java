@@ -107,10 +107,11 @@ public class Lab1P2_JazminSalgado {
     public static void registrarusuario(String user, String pasword) {
         usuario newuser = new usuario(user, pasword);
 
-        if (usuarios.contains(newuser)) {
-            System.out.println("Usuario ingresado ya se encuenta en la lista");
-        } else {
+        if (!usuarios.contains(newuser)) {
             usuarios.add(newuser);
+        } else {
+            
+            System.out.println("Usuario ingresado ya se encuenta en la lista");
         }
         System.out.println("Usuario registrado exitosamente");
     }
