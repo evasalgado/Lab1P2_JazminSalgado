@@ -37,7 +37,7 @@ public class Fecha {
 
     @Override
     public String toString() {
-        return "Iteracion 1: "+indice + ":" + fecha + "\n";
+        return indice + ":" + fecha + "\n";
     }
     
     

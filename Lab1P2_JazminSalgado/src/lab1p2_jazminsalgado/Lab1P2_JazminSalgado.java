@@ -25,7 +25,7 @@ public class Lab1P2_JazminSalgado {
     static ArrayList<Fecha> fechas = new ArrayList<>();
     static ArrayList<usuario> usuarios = new ArrayList<>();
     static ArrayList<dominio> dominios = new ArrayList<>();
-    
+
     public static void main(String[] args) throws ParseException {
         Scanner leer = new Scanner(System.in);
         String op = "";
@@ -51,7 +51,9 @@ public class Lab1P2_JazminSalgado {
                         case 1:
                             System.out.println("Ingrese el correo: ");
                             String user = leer.next();
-                            registrarusuario(user);
+                            System.out.println("Ingrese contraseña");
+                            String contra = leer.next();
+                            registrarusuario(user, contra);
                             break;
                         case 2:
                             System.out.println("Lista de correos:");
@@ -60,7 +62,7 @@ public class Lab1P2_JazminSalgado {
                         default:
                             System.out.println("Numero ingresado no es valido");
                             break;
-                        
+
                     }
                     break;
                 case "c":
@@ -72,9 +74,9 @@ public class Lab1P2_JazminSalgado {
                     break;
             }
         } while (op != "c");
-        
+
     }
-    
+
     public static void añadirfecha(int num) throws ParseException {
         ArrayList dates = new ArrayList();
         Random alea = new Random();
@@ -87,27 +89,24 @@ public class Lab1P2_JazminSalgado {
             month = alea.nextInt(1, 12);
             year = alea.nextInt(1990, 2023);
             if (month == 2) {
-                day = alea.nextInt(1, 28);
+                day = alea.nextInt(1, 29);
+            } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+                day = alea.nextInt(1, 30);
             }
             totdate = +day + "/" + month + "/" + year;
             fecha = df.parse(totdate);
             fechas.add(new Fecha(i, fecha));
-            
-            int date = Integer.parseInt(totdate);
-            for (int j = 0; j < fechas.size(); j++) {
-                if (fechas.get(0).indice>fechas.get(i).indice) {
-                    
-                }
-            }
+            dates.add(totdate);
+
         }
-        
-        System.out.println("Fechas originales\n" + fechas + "\n");
-        
+
+        System.out.println("Fechas originales\n" + dates + "\n");
+
     }
-    
-    public static void registrarusuario(String user) {
-        usuario newuser = new usuario(user);
-        
+
+    public static void registrarusuario(String user, String pasword) {
+        usuario newuser = new usuario(user, pasword);
+
         if (usuarios.contains(newuser)) {
             System.out.println("Usuario ingresado ya se encuenta en la lista");
         } else {
@@ -115,37 +114,43 @@ public class Lab1P2_JazminSalgado {
         }
         System.out.println("Usuario registrado exitosamente");
     }
-    
+
     public static void listarcorreo() {
         ArrayList gmail = new ArrayList();
         ArrayList hotmail = new ArrayList();
         ArrayList outlook = new ArrayList();
         ArrayList yahoo = new ArrayList();
         ArrayList icloud = new ArrayList();
-        ArrayList nonfound = new ArrayList();
+        ArrayList FastMail = new ArrayList();
+        ArrayList ProtonMail = new ArrayList();
         if (usuarios.isEmpty()) {
             System.out.println("Ingrese algo a la lista primero");
         } else {
             for (int i = 0; i < usuarios.size(); i++) {
                 String users = usuarios.get(i).user;
                 String token[] = users.split("@");
-                
-                if (token[1].equals("gmail.com")) {
-                    gmail.add(usuarios.get(i));
-                } else if (token[1].equals("hotmail.com")) {
-                    hotmail.add(usuarios.get(i));
-                } else if (token[1].equals("outlook.com")) {
-                    outlook.add(usuarios.get(i));
-                } else if (token[1].equals("yahoo.com")) {
-                    yahoo.add(usuarios.get(i));
-                } else if (token[1].equals("icloud.com")) {
-                    icloud.add(usuarios.get(i));
-                } else {
-                    nonfound.add(usuarios.get(i));
+
+                if (token.length >= 2) {
+                    if (token[1].equals("gmail.com")) {
+                        gmail.add(usuarios.get(i));
+                    } else if (token[1].equals("hotmail.com")) {
+                        hotmail.add(usuarios.get(i));
+                    } else if (token[1].equals("outlook.com")) {
+                        outlook.add(usuarios.get(i));
+                    } else if (token[1].equals("yahoo.com")) {
+                        yahoo.add(usuarios.get(i));
+                    } else if (token[1].equals("icloud.com")) {
+                        icloud.add(usuarios.get(i));
+                    } else if (token[1].equals("FastMail.com")) {
+                        FastMail.add(usuarios.get(i));
+                    } else if ((token[1].equals("ProtonMail.com"))) {
+                        ProtonMail.add(usuarios.get(1));
+                    } else {
+                        System.out.println("Domain ingresado no es valido");
+                    }
                 }
-                
-                
-            } 
+
+            }
             for (int i = 0; i < gmail.size(); i++) {
                 System.out.println("Gmail:\n"
                         + gmail.get(i));
@@ -166,9 +171,13 @@ public class Lab1P2_JazminSalgado {
                 System.out.println("Icloud:\n"
                         + icloud.get(i));
             }
-            for (int i = 0; i < nonfound.size(); i++) {
-                System.out.println("No encontrados:\n"
-                        + nonfound.get(i));
+            for (int i = 0; i < FastMail.size(); i++) {
+                System.out.println("FastMail:\n"
+                        + FastMail.get(i));
+            }
+             for (int i = 0; i < ProtonMail.size(); i++) {
+                System.out.println("ProtonMail:\n"
+                        + ProtonMail.get(i));
             }
         }
     }

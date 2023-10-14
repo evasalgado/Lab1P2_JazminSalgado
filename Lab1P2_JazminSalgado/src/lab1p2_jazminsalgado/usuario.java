@@ -7,9 +7,11 @@ package lab1p2_jazminsalgado;
 
 public class usuario {
     String user;
+    String password;
 
-    public usuario(String user) {
+    public usuario(String user, String password) {
         this.user = user;
+        this.password = password;
     }
 
     public String getUser() {
@@ -19,13 +21,21 @@ public class usuario {
     public void setUser(String user) {
         this.user = user;
     }
-   
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public String toString() {
-        return  "user=" + user;
+        return  "user=" + user + ", password=" + password;
     }
-   
+    
+    
     
     
 }
