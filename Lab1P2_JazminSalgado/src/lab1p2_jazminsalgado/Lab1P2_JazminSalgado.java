@@ -84,7 +84,7 @@ public class Lab1P2_JazminSalgado {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String totdate = "";
         int day = 0, month = 0, year = 0;
-        for (int i = 0; i <= num; i++) {
+        for (int i = 0; i < num; i++) {
             day = alea.nextInt(1, 31);
             month = alea.nextInt(1, 12);
             year = alea.nextInt(1990, 2023);
@@ -101,6 +101,14 @@ public class Lab1P2_JazminSalgado {
         }
 
         System.out.println("Fechas originales\n" + dates + "\n");
+        
+        for (int i = 0; i < fechas.size(); i++) {
+            int change = alea.nextInt(fechas.size());
+            fechas.get(change);
+            fechas.add(new Fecha(i, fecha));
+            dates.set(i, change);
+            System.out.println("Fechas originales\n" + dates + "\n");
+        }
 
     }
 
