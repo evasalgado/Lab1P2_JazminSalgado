@@ -101,13 +101,12 @@ public class Lab1P2_JazminSalgado {
         }
 
         System.out.println("Fechas originales\n" + dates + "\n");
-        
-        for (int i = 0; i < fechas.size(); i++) {
-            int change = alea.nextInt(fechas.size());
-            fechas.get(change);
-            fechas.add(new Fecha(i, fecha));
-            dates.set(i, change);
-            System.out.println("Fechas originales\n" + dates + "\n");
+         boolean newdates = false;
+        for (int i = 0; i < dates.size(); i++) {
+            if (fechas.get(i).fecha.getTime() > fechas.get(i + 1).fecha.getTime()) {
+                newdates= fechas.get(i).fecha.before(fechas.get(i + 1).fecha);
+            }
+            System.out.println(newdates);
         }
 
     }
@@ -118,7 +117,7 @@ public class Lab1P2_JazminSalgado {
         if (!usuarios.contains(newuser)) {
             usuarios.add(newuser);
         } else {
-            
+
             System.out.println("Usuario ingresado ya se encuenta en la lista");
         }
         System.out.println("Usuario registrado exitosamente");
@@ -184,7 +183,7 @@ public class Lab1P2_JazminSalgado {
                 System.out.println("FastMail:\n"
                         + FastMail.get(i));
             }
-             for (int i = 0; i < ProtonMail.size(); i++) {
+            for (int i = 0; i < ProtonMail.size(); i++) {
                 System.out.println("ProtonMail:\n"
                         + ProtonMail.get(i));
             }
